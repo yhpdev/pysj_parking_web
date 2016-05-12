@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+
+		<!-- This is for login action info and error -->
+		<RollingFile name="login_info" fileName="logs/login/login_info.log"
+			filePattern="logs/login/login_info.log.%d{yyyy-MM-dd}" append="true">
+			<ThresholdFilter level="info" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout pattern="%d{HH:mm:ss}-%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</RollingFile>
+		<File name="login_error" fileName="logs/login/login_error.log"
+		filePattern="logs/login/login_error.log.%d{yyyy-MM-dd}"	append="true">
+			<ThresholdFilter level="error" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout pattern="%d{HH:mm:ss}-%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</File>
+		<!-- This is for register action info and error -->
+		<RollingFile name="register_info" fileName="logs/register/register_info.log"
+			filePattern="logs/register/register_info.log.%d{yyyy-MM-dd}" append="true">
+			<ThresholdFilter level="info" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout pattern="%d{HH:mm:ss}-%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</RollingFile>
+		<File name="register_error" fileName="logs/register/register_error.log"
+		filePattern="logs/register/register_error.log.%d{yyyy-MM-dd}" append="true">
+			<ThresholdFilter level="error" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout pattern="%d{HH:mm:ss}-%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</File>
+		<!-- This is for postinfo action info and error -->
+		<RollingFile name="postinfo_info" fileName="logs/postinfo/postinfo_info.log"
+			filePattern="logs/postinfo/postinfo_info.log.%d{yyyy-MM-dd}" append="true">
+			<ThresholdFilter level="info" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout pattern="%d{HH:mm:ss}-%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</RollingFile>
+		<File name="postinfo_error" fileName="logs/postinfo/postinfo_error.log"
+		filePattern="logs/postinfo/postinfo_error.log.%d{yyyy-MM-dd}"	append="true">
+			<ThresholdFilter level="error" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout pattern="%d{HH:mm:ss}-%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</File>
+		<!-- This is for User info configuration-->
+		<File name="userinfoconfig" fileName="logs/userinfoconfig/userinfoconfig.log"
+		filePattern="logs/userinfoconfig/userinfoconfig.log.%d{yyyy-MM-dd}"	append="true">
+			<PatternLayout pattern="%d{HH:mm:ss}-%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</File>
+	</Appenders>
+	<Loggers>
+		<Root level="error">
+			<AppenderRef ref="Console" />
+		</Root>
+		<!-- Login logger -->
+		<Logger name="com.hulaup.controller.LoginController" level="trace"
+			additivity="false">
+			<AppenderRef ref="login_info" />
+			<AppenderRef ref="login_error" />
+		</Logger>
+
+		<!-- Register logger -->
+		<Logger name="com.hulaup.controller.RegisterController" level="trace"
+			additivity="false">
+			<AppenderRef ref="register_info" />
+			<AppenderRef ref="register_error" />
+		</Logger>
+		
+		<!-- PostInfo logger -->
+		<Logger name="postinfo" level="trace"
+			additivity="false">
+			<AppenderRef ref="postinfo_info" />
+			<AppenderRef ref="postinfo_error" />
+		</Logger>
+	</Loggers>
+</Configuration>
